@@ -4,6 +4,9 @@
   fetchFromGitHub,
   fetchpatch2,
   nixosTests,
+
+  configLocalPath ? "/etc/postfixadmin/config.local.php",
+  templatesCachePath ? "/var/cache/postfixadmin/templates_c",
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "postfixadmin";
@@ -29,8 +32,8 @@ stdenv.mkDerivation (finalAttrs: {
   installPhase = ''
     mkdir $out
     cp -r * $out/
-    ln -sf /etc/postfixadmin/config.local.php $out/
-    ln -sf /var/cache/postfixadmin/templates_c $out/
+    ln -sf '${configLocalPath}' $out/config.local.php
+    ln -sf '${templatesCachePath}' $out/templates_c
   '';
 
   passthru.tests = { inherit (nixosTests) postfixadmin; };
