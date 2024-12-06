@@ -215,3 +215,6 @@ adb9714bd909df283c66bbd641bd631ff50a4260
 
 # treewide: incus packages
 9ab59bb5fb943ad6740f64f5a79eae9642fb8211
+
+# nixos/postfixadmin: format with nixfmt-rfc-style
+f3b435c2cf25264dcc2a117c20086154cb6477ef
