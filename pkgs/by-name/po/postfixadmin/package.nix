@@ -2,18 +2,27 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch2,
   nixosTests,
 }:
 stdenv.mkDerivation rec {
   pname = "postfixadmin";
-  version = "3.3.13";
+  version = "3.3.14";
 
   src = fetchFromGitHub {
     owner = pname;
     repo = pname;
     rev = "${pname}-${version}";
-    sha256 = "sha256-46bc34goAcRvaiyW7z0AvIcd8n61TL6vgLQ+y7nNKBQ=";
+    sha256 = "sha256-T7KRD0ihtWcvJB6pZxXThFHerL5AGd8+mCg8UIXPZ4g=";
   };
+
+  patches = [
+    # Fix https://github.com/postfixadmin/postfixadmin/issues/872
+    (fetchpatch2 {
+      url = "https://github.com/postfixadmin/postfixadmin/commit/8ec9140673afd9996a3f81cca600ea0e5bd31cf8.patch";
+      hash = "sha256-OLkWeVL5ryuIONb/RF6Uv7UQDfVsbEkrx50rMDungGI=";
+    })
+  ];
 
   installPhase = ''
     mkdir $out
