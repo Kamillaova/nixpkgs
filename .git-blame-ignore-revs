@@ -223,3 +223,6 @@ adb9714bd909df283c66bbd641bd631ff50a4260
 
 # nixos/postfixadmin: format with nixfmt-rfc-style
 f3b435c2cf25264dcc2a117c20086154cb6477ef
+
+# nixos/postfixadmin: refactor
+f2219ef3314a1d4b09a0200e28c2e6987b4d529a
