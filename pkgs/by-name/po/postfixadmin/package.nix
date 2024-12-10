@@ -5,14 +5,14 @@
   fetchpatch2,
   nixosTests,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "postfixadmin";
   version = "3.3.14";
 
   src = fetchFromGitHub {
-    owner = pname;
-    repo = pname;
-    rev = "${pname}-${version}";
+    owner = "postfixadmin";
+    repo = "postfixadmin";
+    rev = "refs/tags/postfixadmin-${finalAttrs.version}";
     sha256 = "sha256-T7KRD0ihtWcvJB6pZxXThFHerL5AGd8+mCg8UIXPZ4g=";
   };
 
@@ -23,6 +23,8 @@ stdenv.mkDerivation rec {
       hash = "sha256-OLkWeVL5ryuIONb/RF6Uv7UQDfVsbEkrx50rMDungGI=";
     })
   ];
+
+  strictDeps = true;
 
   installPhase = ''
     mkdir $out
@@ -40,4 +42,4 @@ stdenv.mkDerivation rec {
     license = lib.licenses.gpl2Plus;
     platforms = lib.platforms.all;
   };
-}
+})
